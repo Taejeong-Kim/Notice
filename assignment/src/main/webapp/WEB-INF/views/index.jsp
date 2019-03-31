@@ -80,7 +80,7 @@
 			<br>
 			<br>
 			<div class="form">
-				<label class="small_font"><input type="checkbox" id="saveId" name="saveId">아이디저장</label> 
+				<label class="small_font"><input type="checkbox" id="saveId" name="saveId">아이디 저장</label> 
 			</div>
 		</div>
 	</form>

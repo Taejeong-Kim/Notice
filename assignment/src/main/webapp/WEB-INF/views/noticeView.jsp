@@ -52,7 +52,7 @@
 <body>
 	<div>
 		<h2>
-			<strong>공지사항 등록</strong>
+			<strong>공지사항 상세</strong>
 		</h2>		
 		<br>
 		<form id="f" name="f" action="NoticeUpdate" method="POST">
