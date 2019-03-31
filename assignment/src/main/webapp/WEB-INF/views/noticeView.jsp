@@ -65,6 +65,11 @@
 					<td colspan="2" style="font-size:10px;">최종수정일 : ${post.finMdfyDt}</td>
 				</tr>
 				<tr>
+					<td class="title">작성자</td>
+					<td><input type="text" id="edt_writer" value="${post.writerNm}"
+							style="width: 652px; height:22px;" readOnly/></td>
+				</tr>
+				<tr>
 					<td class="title">제목</td>
 					<td><input type="text" id="edt_title" name="title" value="${post.title}"
 							style="width: 652px; height:22px;" readOnly/></td>
