@@ -1,0 +1,52 @@
+@charset "EUC-KR";
+
+html{
+	height:60%;
+}
+body{
+    padding: 16px;
+    margin: 0 auto;
+    width: 800px;
+    text-align: center;
+}
+a{ 
+    text-decoration: none;
+    color: inherit;
+}
+table{ 
+    width: 800px;
+    text-align: center;
+    border-collapse: collapse;
+    border-spacing: 0;
+}
+thead tr th {
+    border-bottom: 1px solid #666;
+}
+th, td { 
+    padding: 4px;
+    border-right: 1px solid #bbb 
+}
+th:last-child, 
+td:last-child { border-right: none }
+.left{ text-align: left; width:300px; }
+ul { 
+    padding: 0;
+    margin: 0 auto;
+    margin-top: 32px;
+    width: auto;
+    display: inline-block;
+    list-style-type: none }
+ul li {
+    float: left;
+    margin: 0 2px;
+    width: 24px;
+    height: 24px;
+    line-height: 24px;
+    text-align: center;
+    border: 1px solid #999;
+}
+
+.lb_title{
+	cursor: pointer;
+	text-decoration: underline;
+}

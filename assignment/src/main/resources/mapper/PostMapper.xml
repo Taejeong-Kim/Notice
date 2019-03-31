@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.assignment.notice.model.dao.PostDAO">
+
+    <select id="postList" parameterType="map"  resultType="com.assignment.notice.model.dto.PostDTO">
+        <!-- H2 DB not supported ROW_NUMBER() OVER(ORDER BY) -->
+        SELECT AA.*
+          FROM (
+		        SELECT POST_NO, TITLE, WRITER, WRITER_NM
+		        	 , REG_DT, FIN_MDFY_DT, VIEW_COUNT, POST_PWD
+		        	 , ROWNUM() AS RNM
+		          FROM (
+			        SELECT POST_NO, TITLE
+			        	 , WRITER
+			             , (SELECT USER_NM FROM TBL_MEMBER B WHERE A.WRITER = B.USER_ID) AS WRITER_NM
+			             , REG_DT, FIN_MDFY_DT, VIEW_COUNT, POST_PWD
+					  FROM TBL_POST A
+					 ORDER BY POST_NO DESC
+					  ) A
+				 ORDER BY RNM
+		 	   ) AA
+		 WHERE RNM BETWEEN #{start} AND #{end}
+		 
+    </select>
+    
+    <select id="getPost" parameterType="int" resultType="com.assignment.notice.model.dto.PostDTO">
+    	SELECT POST_NO, TITLE, CONTENTS, WRITER
+    		 , (SELECT USER_NM FROM TBL_MEMBER B WHERE A.WRITER = B.USER_ID) AS WRITER_NM
+    		 , REG_DT, FIN_MDFY_DT, VIEW_COUNT, POST_PWD
+		  FROM TBL_POST A
+		 WHERE POST_NO = #{postNo}
+    </select>
+
+	<insert id="insertPost" parameterType="com.assignment.notice.model.dto.PostDTO">
+		INSERT INTO TBL_POST
+			 ( POST_NO, TITLE, CONTENTS, WRITER, 
+			 	REG_DT, FIN_MDFY_DT, VIEW_COUNT, POST_PWD)
+		VALUES 
+			 ( (SELECT MAX(POST_NO)+1 FROM TBL_POST), #{title}, #{contents}, #{writer},
+			   TO_CHAR(SYSDATE,'YYYY-MM-DD'), TO_CHAR(SYSDATE,'YYYY-MM-DD'), 0, #{postPwd})
+	</insert>
+
+	<update id="updatePost" parameterType="com.assignment.notice.model.dto.PostDTO">
+		UPDATE TBL_POST
+		   SET 
+			 TITLE = #{title},
+		  CONTENTS = #{contents},
+		    WRITER = #{writer},
+	   FIN_MDFY_DT = TO_CHAR(SYSDATE,'YYYY-MM-DD')
+	   		 WHERE POST_NO = #{postNo}
+	</update>	
+	
+	<delete id="deletePost" parameterType="int">
+		DELETE FROM TBL_POST
+		 WHERE POST_NO = #{postNo}
+	</delete>
+	
+	<update id="increaseCount" parameterType="int">
+		UPDATE TBL_POST
+		   SET VIEW_COUNT = VIEW_COUNT+1
+		 WHERE POST_NO = #{postNo}
+	</update>
+
+	<select id="getAllCount" resultType="int">
+		SELECT COUNT(*)
+		  FROM TBL_POST
+	</select>
+</mapper>
