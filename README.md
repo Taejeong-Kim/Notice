@@ -7,12 +7,12 @@
 * 프로젝트 실행 방법은 README.md 에 명시되어 있습니다.
 
 ## Software Requirement
-**1. 스프링 부트(STS)**
-- 다운로드 사이트 : https://spring.io/tools3/sts/all
-**2. H2 DB(DBMS)**
-- 프로젝트 내의 Dependency 설정과 프로퍼티 설정을 통하여 구축하였습니다.
-**3. MyBatis**
-- Dependency, 프로퍼티 설정
+* 스프링 부트(STS) 
+  - https://spring.io/tools3/sts/all  
+* H2 DB(DBMS)
+  - 프로젝트 내의 Dependency 설정과 프로퍼티 설정을 통하여 구축하였습니다.  
+* MyBatis
+  - Dependency, 프로퍼티 설정  
 
 ## Installing the source
 **Download Zip**
